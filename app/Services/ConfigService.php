@@ -10,8 +10,7 @@ class ConfigService
     public static function key(string $key, $default = null)
     {
         $configs = Cache::rememberForever('configs', function () {
-            return Config::orderBy('key', 'ASC')
-                ->get()
+            return Config::all()
                 ->pluck('value', 'key')
                 ->toArray();
         });
